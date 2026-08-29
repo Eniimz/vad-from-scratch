@@ -1,17 +1,3 @@
-"""
-  Step 0: scaffold (I can do this — it's boilerplate)
-  vad-from-scratch/
-  ├── vad/
-  │   ├── __init__.py
-  │   ├── framing.py       # you write: split audio into frames
-  │   ├── features.py      # you write: energy, ZCR per frame
-  │   ├── decision.py       # you write: threshold + hysteresis + hangover
-  │   └── io.py             # boilerplate: load wav, write output
-  ├── cli.py                # boilerplate: argparse, wire pipeline together
-  ├── tests/
-  │   └── test_audio.wav    # a short real recording to test against
-  └── README.md
-"""
 import numpy as np
 import soundfile as sf
 
