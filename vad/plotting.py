@@ -8,12 +8,14 @@ def plot_waveform_energy_zcr(
     energies,
     zcrs,
     frame_duration_ms,
+    speech,
     out_path="features_preview.png",
 ):
     time_axis = np.linspace(0, len(data) / sample_rate, num=len(data))
     frame_times = np.arange(len(energies)) * (frame_duration_ms / 1000.0)
+    speech_num = [1 if s else 0 for s in speech]
 
-    fig, (ax1, ax2, ax3) = plt.subplots(3, 1, sharex=True, figsize=(12, 8))
+    fig, (ax1, ax2, ax3, ax4) = plt.subplots(4, 1, sharex=True, figsize=(12, 10))
 
     ax1.plot(time_axis, data, color="blue", alpha=0.7)
     ax1.set_title("Waveform")
@@ -26,7 +28,12 @@ def plot_waveform_energy_zcr(
     ax3.plot(frame_times, zcrs, color="orange")
     ax3.set_title("Zero-crossing rate per frame")
     ax3.set_ylabel("ZCR")
-    ax3.set_xlabel("Time (Seconds)")
+
+    ax4.step(frame_times, speech_num, where="post", color="purple")
+    ax4.set_title("Speech (1) vs silence (0)")
+    ax4.set_ylabel("Speech")
+    ax4.set_ylim(-0.1, 1.2)
+    ax4.set_xlabel("Time (Seconds)")
 
     plt.tight_layout()
     plt.savefig(out_path, dpi=120)
