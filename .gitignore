@@ -6,3 +6,4 @@ __pycache__/
 *.wav
 output_segments/
 HANDOFF.md
+!docs/*.png
